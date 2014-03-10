@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>jQuery Gallery</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="fancybox/jquery.fancybox.css">
+  <link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
+</head>
+<body>
+  <div class="nav clearfix">
+    <div class="container">
+    <h1><a href="#">Top Shop</a></h1>
+    <ul>
+      <li><a href="#">Tops</a></li>
+      <li><a href="#">Skirts</a></li>
+      <li><a href="#">Pants</a></li>
+    </ul>  
+    </div><!-- end of container -->
+  </div> <!-- end of nav -->
+
+  <div class="container clearfix">
+    <div class="gallery">
+      <h2>Black Tops</h2>
+
+      <div class="previews">
+          <a href="#" class="selected" data-full="images/top1large.jpg"><img src="images/top1small.jpg" /></a>
+          <a href="#" data-full="images/top2large.jpg"><img src="images/top2small.jpg" /></a>
+          <a href="#" data-full="images/top3large.jpg"><img src="images/top3small.jpg" /></a>
+          <a href="#" data-full="images/top4large.jpg"><img src="images/top4small.jpg" /></a>
+          <a href="#" data-full="images/top5large.jpg"><img src="images/top5small.jpg" /></a>
+      </div>
+
+      <div class="full">
+          <!-- first image is viewable to start -->
+          <img src="images/top1large.jpg" />
+      </div>
+
+    </div>
+  </div>
+  
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="fancybox/jquery.fancybox.js?v=2.1.4"></script>
+
+  <script>
+  $(document).ready(function(){
+    $('a').click(function(){
+      var largeImage = $(this).attr('data-full');
+      $('.selected').removeClass();
+      $(this).addClass('selected');
+      $('.full img').hide();
+      $('.full img').attr('src', largeImage);
+      $('.full img').fadeIn(1000);
+    }); // closing the listening on a click
+    $('.full img').on('click', function(){
+      var modalImage = $(this).attr('src');
+      $.fancybox.open(modalImage);
+    });
+      
+  }); //closing our doc ready
+  </script>
+
+</body>
+</html>
